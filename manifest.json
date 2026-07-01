@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "ResumeAI Extension",
+  "version": "1.0.0",
+  "description": "Extract job descriptions and use AI to perform ATS match, resume optimization, cover letter generation and interview preparation.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://*.linkedin.com/*",
+    "https://*.naukri.com/*",
+    "https://*.indeed.com/*",
+    "https://*.foundit.in/*",
+    "https://*.foundit.com/*",
+    "https://*.wellfound.com/*"
+  ],
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.linkedin.com/*",
+        "https://*.naukri.com/*",
+        "https://*.indeed.com/*",
+        "https://*.foundit.in/*",
+        "https://*.foundit.com/*",
+        "https://*.wellfound.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  }
+}
